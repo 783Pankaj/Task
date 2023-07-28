@@ -1,11 +1,13 @@
-import NavBar from "./components/NavBar";
+import Navbar from '@/Components/molucules/Navbar'
+import React from 'react'
 
-const About=()=>{
-    return(
-        <div>
-            <NavBar />
-            <h2>About Page</h2>
-        </div>
-    );
+const Products = () => {
+  return (
+    <div>
+      <Navbar />
+      <h1>About Page</h1>
+    </div>
+  )
 }
-export default About;
+
+export default Products
