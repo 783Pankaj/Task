@@ -46,9 +46,9 @@ const Navbar = () => {
         <li>
           <Link href={"/"}>home</Link>
         </li>
-        <li>
+        {/* <li>
           <Link href={"/products"}>Products</Link>
-        </li>
+        </li> */}
         <li>
           <Link href={"/cart"}>
             <div >
@@ -107,9 +107,9 @@ const Navbar = () => {
                 <li>
                   <Link href={"/"}>home</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href={"/products"}>Products</Link>
-                </li>
+                </li> */}
                 {/* <li>
                     <Link href={"/cart"}>Cart</Link>
                   </li> */}

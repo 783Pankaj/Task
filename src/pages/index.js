@@ -2,7 +2,8 @@
 // import NavBar from "./components/NavBar";
 import Navbar from "@/Components/molucules/Navbar";
 import { addToCart, removeToCart, emptyCart, buyToCart} from "@/Components/redux/action";
-import { buyList, productList } from "@/Components/redux/productAction";
+// import { buyList, productList } from "@/Components/redux/productAction";
+import { productList } from "@/Components/redux/productAction";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Link from "next/link";
@@ -11,16 +12,16 @@ import Link from "next/link";
 
 const Index=()=>{
   const dispatch = useDispatch();
-  const Buydispatch = useDispatch();
+  // const Buydispatch = useDispatch();
   
   let data = useSelector((state)=>state.productData);
   console.log("data in main component", data);
 
   // let val = useSelector((state)=>state.buyProductData);
   // console.log("buy data is here",val)
-  // useEffect(()=>{
-  //   dispatch(productList())
-  // },[])
+  useEffect(()=>{
+    dispatch(productList())
+  },[])
 
   // useEffect(()=>{
   //   Buydispatch(buyList())
@@ -43,12 +44,13 @@ const Index=()=>{
             <div>
               <button id="cart" onClick={() => dispatch(addToCart(item))} >Add to Cart</button>
               <button id="remove-cart" onClick={() => dispatch(removeToCart(item.id))}>Remove to Cart</button>
-              <Link href='/products'>
-              <button id="buy" onClick={()=>dispatch(buyToCart(item))}>Buy</button>
-              </Link>
+              {/* <Link href='/products'>
+              <button id="buy" onClick={()=>dispatch(addToCart(item))}>Buy</button>
+              </Link> */}
               </div>
           </div>
           )
+       
         }
       </div>
     </div>

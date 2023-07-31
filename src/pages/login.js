@@ -1,48 +1,52 @@
-'use client'
-import React from "react";
+import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import * as formik from 'formik';
 import * as yup from 'yup';
 import Navbar from "@/Components/molucules/Navbar";
-import { Button } from "@mui/material";
-// import '../Styles/login.css';
+import { Avatar, Grid, Paper } from "@mui/material";
+import LockIcon from '@mui/icons-material/Lock';
+
 const Login=()=>{
-    const { Formik } = formik;
-    const schema = yup.object().shape({
-      firstName: yup.string().required(),
-      lastName: yup.string().required(),
-      username: yup.string().required(),
-      password: yup.string().required(),
-      city: yup.string().required(),
-      state: yup.string().required(),
-      zip: yup.string().required(),
-      terms: yup.bool().required().oneOf([true], 'Terms must be accepted'),
-    });
+  const { Formik } = formik;
+  const schema = yup.object().shape({
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    username: yup.string().required(),
+    city: yup.string().required(),
+    state: yup.string().required(),
+    zip: yup.string().required(),
+    terms: yup.bool().required().oneOf([true], 'Terms must be accepted'),
+  });
+
+    const paperStyle = { padding: 20, height: '73vh', width: 400, margin: "40px auto" }
+    const avatarStyle = { backgroundColor: '#1bbd7e' }
+    const btnstyle = { margin: '8px 0' }
+   
+
     return(
-        <div>
+      <Grid>
             <div>
                 <Navbar />
             </div>
-
-            <div className="loginForm">
-            <div className="formmy">
-            <Formik
+              <Paper style={paperStyle}>
+                <Avatar style={avatarStyle}><LockIcon /> </Avatar>
+                  <h2>Login </h2>
+      <Formik
       validationSchema={schema}
       onSubmit={console.log}
       initialValues={{
-        firstName: '',
-        lastName: '',
+        firstName: 'Pankaj',
+        lastName: 'Pal',
         username: '',
-        password:'',
         city: '',
         state: '',
         zip: '',
         terms: false, 
       }}
     >
-       {({handleSubmit, handleChange, values, touched, errors }) => (
+      {({handleSubmit, handleChange, values, touched, errors }) => (
         <Box noValidate onSubmit={handleSubmit}
         component="form"
         sx={{
@@ -50,16 +54,15 @@ const Login=()=>{
         }}
         autoComplete="off"
       >
-        <div >
+        
           <TextField
-         
             required
-            id=""
+            id="filled-required"
             label="Enter First Name"
             type="text"
             value={values.firstName}
             onChange={handleChange}
-            isValid={touched.firstName && !errors.firstName}
+             isValid={touched.firstName && !errors.firstName}
           />
           <TextField
             required
@@ -118,8 +121,7 @@ const Login=()=>{
             value={values.password}
             onChange={handleChange}
             isInvalid={!!errors.password}
-          />
-          <div>
+          /> <div>
             <span>Agree to terms and conditions</span>
           <Checkbox
             name="terms"
@@ -130,17 +132,14 @@ const Login=()=>{
             feedbackType="invalid"
             id="validationFormik0"
           />
-          <button>Login</button>
-          </div>
+          <button style={btnstyle}>Login</button>
+         
         </div>
-        
       </Box>
-      )}
+      )} 
     </Formik>
-    </div>
-    </div>
-        </div>
+    </Paper>
+    </Grid>
     );
 }
 export default Login;
-
